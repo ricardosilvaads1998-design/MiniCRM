@@ -21,7 +21,18 @@ namespace MiniCRM.Controllers
         {
             return await _context.Clientes.ToListAsync();
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Cliente>> GetCliente(int id)
+        {
+            var cliente = await _context.Clientes.FindAsync(id);
 
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            return cliente;
+        }
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
