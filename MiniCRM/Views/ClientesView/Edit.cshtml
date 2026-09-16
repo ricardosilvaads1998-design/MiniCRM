@@ -1,0 +1,103 @@
+﻿@model MiniCRM.Models.Cliente
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<div class="container mt-5">
+
+    <div class="mb-4">
+        <h1 class="fw-bold">Editar Cliente</h1>
+        <p class="text-muted">
+            Altere os dados do cliente abaixo.
+        </p>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <form asp-controller="ClientesView"
+                  asp-action="Edit"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       name="Id"
+                       value="@Model.Id" />
+
+                <div class="mb-3">
+                    <label for="Nome" class="form-label">
+                        Nome
+                    </label>
+
+                    <input type="text"
+                           id="Nome"
+                           name="Nome"
+                           value="@Model.Nome"
+                           class="form-control"
+                           required />
+
+                    <span asp-validation-for="Nome"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Email" class="form-label">
+                        Email
+                    </label>
+
+                    <input type="email"
+                           id="Email"
+                           name="Email"
+                           value="@Model.Email"
+                           class="form-control"
+                           required />
+
+                    <span asp-validation-for="Email"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Telefone" class="form-label">
+                        Telefone
+                    </label>
+
+                    <input type="text"
+                           id="Telefone"
+                           name="Telefone"
+                           value="@Model.Telefone"
+                           class="form-control"
+                           required />
+
+                    <span asp-validation-for="Telefone"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Guardar Alterações
+                    </button>
+
+                    <a href="/ClientesView/Index"
+                       class="btn btn-secondary">
+                        Cancelar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
